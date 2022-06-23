@@ -26,3 +26,19 @@ jobs:
       run: ./gradlew build
     - name: Android CI Test!
       run: echo "Hello??"
+      
+    - name: 1. 현재 시간 설정하기
+        uses: 1466587594/get-current-time@v1
+        id: current-time
+        with:
+          format: YYYY.MM.DD_LT
+          utcOffset: "+09:00"
+        if: always()
+
+      # 2. 현재 시간 내용 확인
+      - name: 2. 현재 시간 내용 확인
+        env:
+          TIME: "${{ steps.current-time.outputs.time }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
+        run: echo $TIME $F_TIME
+        if: always()  
