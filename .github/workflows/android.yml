@@ -27,10 +27,6 @@ jobs:
     - name: Android CI Test!
       run: echo "Hello??"
 
-      # 2. 현재 시간 내용 확인
-    - name: 2. 현재 시간 내용 확인
-       env:
-         TIME: "${{ steps.current-time.outputs.time }}"
-         F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
-       run: echo $TIME $F_TIME
-       if: always()  
+    # android lint 테스트
+    - name: android lint 테스트
+      run: ./gradlew lint
